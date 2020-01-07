@@ -44,13 +44,23 @@ function parseTime(time, cFormat) {
  */
 function getRequest() {
     let url = location.search; //获取url中"?"符后的字串
-    let theRequest = new Object();
-    if (url.indexOf("?") != -1) {
+    let theRequest = {};
+    if (url.indexOf("?") !== -1) {
         let str = url.substr(1);
         strs = str.split("&");
-        for(let i = 0; i < strs.length; i ++) {
-            theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+        for (let i = 0; i < strs.length; i++) {
+            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
         }
     }
     return theRequest;
+}
+
+/**
+ * 判空
+ * @param field (传入字段)
+ * @param format (如果是空返回的字符串)
+ * @returns String
+ */
+function isEmpty(field,format) {
+    return field ? field : format;
 }
