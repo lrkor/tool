@@ -26,8 +26,8 @@ function parseTime(time, cFormat) {
         a: date.getDay()
     };
     // eslint-disable-next-line
-    const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-        let value = formatObj[key]
+    const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+        let value = formatObj[key];
         if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1];
         if (result.length > 0 && value < 10) {
             value = '0' + value
@@ -35,7 +35,22 @@ function parseTime(time, cFormat) {
         return value || 0
     });
     // eslint-disable-next-line
-    return time_str
+    return timeStr
 }
 
-
+/**
+ * 获取url参数
+ * @returns {*}
+ */
+function getRequest() {
+    let url = location.search; //获取url中"?"符后的字串
+    let theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+        let str = url.substr(1);
+        strs = str.split("&");
+        for(let i = 0; i < strs.length; i ++) {
+            theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+        }
+    }
+    return theRequest;
+}
