@@ -4,7 +4,7 @@
  * @param cFormat
  * @returns {*}
  */
-function parseTime(time, cFormat) {
+export function parseTime(time, cFormat) {
     if (arguments.length === 0) {
         return null
     }
@@ -42,12 +42,12 @@ function parseTime(time, cFormat) {
  * 获取url参数
  * @returns {*}
  */
-function getRequest() {
+export function getRequest() {
     let url = location.search; //获取url中"?"符后的字串
     let theRequest = {};
     if (url.indexOf("?") !== -1) {
         let str = url.substr(1);
-        strs = str.split("&");
+        let strs = str.split("&");
         for (let i = 0; i < strs.length; i++) {
             theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
         }
@@ -61,7 +61,7 @@ function getRequest() {
  * @param format (如果是空返回的字符串)
  * @returns String
  */
-function isEmpty(field, format) {
+export function isEmpty(field, format) {
     return field ? field : format;
 }
 
@@ -69,7 +69,7 @@ function isEmpty(field, format) {
  * 生成随机序列号
  * @returns String
  */
-function guid() {
+export function guid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
         const r = Math.random() * 16 | 0;
         const v = c === 'x' ? r : ((r & 0x3) | 0x8);
