@@ -61,6 +61,18 @@ function getRequest() {
  * @param format (如果是空返回的字符串)
  * @returns String
  */
-function isEmpty(field,format) {
+function isEmpty(field, format) {
     return field ? field : format;
+}
+
+/**
+ * 生成随机序列号
+ * @returns String
+ */
+function guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : ((r & 0x3) | 0x8);
+        return v.toString(16);
+    });
 }
